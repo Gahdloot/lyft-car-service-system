@@ -32,3 +32,12 @@ class willoughbyEngine:
 
     def needs_service(self):
         return Engine().needs_service(self.millage_requirement, self.millage_difference)
+
+
+class sternmanEngine:
+    def __init__(self, warning_light_on):
+        self.warning_light_on = warning_light_on
+
+
+    def needs_service(self):
+        return self.warning_light_on

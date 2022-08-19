@@ -3,27 +3,35 @@ class Battery:
         return service_difference > requirements
 
 
+from datetime import datetime
+
 
 class spindlerBattery(Battery):
     requirements = 2
 
-    def __init__(self, current_date, last_service_date):
-        self.current_date = current_date
+    def __init__(self, last_service_date):
         self.last_service_date = last_service_date
 
-        self.service_difference = self.current_date - self.last_service_date
+        duration_in_seconds =  (datetime.now() - self.last_service_date).total_seconds()
+        self.years = divmod(duration_in_seconds, 31536000)[0]
+
 
     def needs_service(self):
-        Battery().needs_service(self.requirements, self.service_difference)
+        return Battery().needs_service(self.requirements, self.years)
 
 class nubbinBattery(Battery):
     requirements = 4
 
-    def __init__(self, current_date, last_service_date):
-        self.current_date = current_date
+    def __init__(self, last_service_date):
         self.last_service_date = last_service_date
 
-        self.service_difference = current_date - last_service_date
+        duration_in_seconds = (datetime.now() - self.last_service_date).total_seconds()
+        self.years = divmod(duration_in_seconds, 31536000)[0]
 
     def needs_service(self):
-        Battery().needs_service(self.requirements, self.service_difference)
+        return Battery().needs_service(self.requirements, self.years)
+
+
+
+
+
