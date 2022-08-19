@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 class spindlerBattery(Battery):
-    requirements = 2
+    requirements = 3
 
     def __init__(self, last_service_date):
         self.last_service_date = last_service_date
