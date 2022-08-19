@@ -85,9 +85,28 @@ class TestBattery(unittest.TestCase):
 
 
 
+class TestEngine(unittest.TestCase):
+    def test_capulet_Engine(self):
+        current_millage_1 = 100000
+        last_service_millage_1 = 69000
+        last_service_millage_2 = 71000
+        check_1 = capuletEngine(current_millage_1, last_service_millage_1).needs_service()
+        check_2 = capuletEngine(current_millage_1, last_service_millage_2).needs_service()
+        self.assertFalse(check_1)
+        self.assertTrue(check_2)
 
+    def test_willoughby_Engine(self):
+        current_millage_1 = 100000
+        last_service_millage_1 = 39000
+        last_service_millage_2 = 41000
+        check_1 = willoughbyEngine(current_millage_1, last_service_millage_1).needs_service()
+        check_2 = willoughbyEngine(current_millage_1, last_service_millage_2).needs_service()
+        self.assertFalse(check_1)
+        self.assertTrue(check_2)
 
-
+    def test_sternman_Engine(self):
+        self.assertTrue(sternmanEngine(True).needs_service())
+        self.assertFalse(sternmanEngine(False).needs_service())
 
 class TestCalliope(unittest.TestCase):
     def test_car_not_should_be_serviced(self):
